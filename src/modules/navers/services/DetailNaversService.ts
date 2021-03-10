@@ -3,6 +3,7 @@ import { getCustomRepository } from 'typeorm';
 import { format } from 'date-fns';
 import NaversRepository from '../repositories/NaversRepository';
 import ProjectsRepository from '../../projects/repositories/ProjectsRepository';
+import AppError from '../../../shared/errors/AppError';
 
 interface project {
   project_id: number;
@@ -45,7 +46,7 @@ export default class DetailProjectService {
       .getMany();
 
     if (!dataNaver) {
-      throw new Error('Nenhum naver encontrado');
+      throw new AppError('Nenhum naver encontrado');
     }
 
     const naver = {

@@ -2,6 +2,8 @@
 import { getCustomRepository } from 'typeorm';
 import ProjectsRepository from '../repositories/ProjectsRepository';
 import NaverProjectsRepository from '../../naver_project/repositories/NaverProjectRepository';
+import NaverRepository from '../../navers/repositories/NaversRepository';
+import AppError from '../../../shared/errors/AppError';
 
 interface UpdateRequest {
   user_id: number;
@@ -24,6 +26,32 @@ export default class UpdateProjectService {
   }: UpdateRequest): Promise<UpdateResponse | undefined> {
     const projectRepository = getCustomRepository(ProjectsRepository);
     const naverProjectRepository = getCustomRepository(NaverProjectsRepository);
+    const naverRepository = getCustomRepository(NaverRepository);
+
+    const userNaverId = await naverRepository
+      .createQueryBuilder('navers')
+      .select('navers.naver_id', 'id')
+      .where(`user_id = ${user_id}`)
+      .getRawMany();
+
+    const naverIds: number[] = [];
+    const naverNotExistent: number[] = [];
+
+    userNaverId.forEach(Id => {
+      const [valueId]: number[] = Object.values(Id);
+
+      naverIds.push(valueId);
+    });
+
+    navers.forEach(naver => {
+      if (!naverIds.includes(naver)) {
+        naverNotExistent.push(naver);
+      }
+    });
+
+    if (naverNotExistent.length) {
+      throw new AppError(`Naver ${naverNotExistent} não encontrado`);
+    }
 
     const project = await projectRepository.findOne({
       where: {
@@ -33,7 +61,7 @@ export default class UpdateProjectService {
     });
 
     if (!project) {
-      throw new Error('Projeto não encontrado');
+      throw new AppError('Projeto não encontrado');
     }
 
     await projectRepository

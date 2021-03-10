@@ -4,6 +4,7 @@ import NaverProjectRepository from '../../naver_project/repositories/NaverProjec
 import NaversRepository from '../repositories/NaversRepository';
 import ProjectRepository from '../../projects/repositories/ProjectsRepository';
 import Naver from '../entities/Naver';
+import AppError from '../../../shared/errors/AppError';
 
 interface Request {
   name: string;
@@ -54,7 +55,7 @@ export default class CreateProjectService {
     });
 
     if (projectNotExistent.length) {
-      throw new Error(`Projeto ${projectNotExistent} não encontrado`);
+      throw new AppError(`Projeto ${projectNotExistent} não encontrado`);
     }
 
     const naver = naversRepository.create({

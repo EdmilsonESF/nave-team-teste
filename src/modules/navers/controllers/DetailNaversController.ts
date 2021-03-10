@@ -7,17 +7,13 @@ export default class DetailNaversController {
     request: Request,
     response: Response,
   ): Promise<Response> {
-    try {
-      const { user_id } = request.user;
-      const { id } = request.query;
+    const { user_id } = request.user;
+    const { id } = request.query;
 
-      const Naver = new DetailNaversService();
+    const Naver = new DetailNaversService();
 
-      const naver = await Naver.execute(user_id, Number(id));
+    const naver = await Naver.execute(user_id, Number(id));
 
-      return response.json(naver);
-    } catch (err) {
-      return response.status(400).json({ error: err.message });
-    }
+    return response.json(naver);
   }
 }

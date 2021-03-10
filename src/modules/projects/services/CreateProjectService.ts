@@ -3,6 +3,7 @@ import { getCustomRepository } from 'typeorm';
 import ProjectsRepository from '../repositories/ProjectsRepository';
 import NaverProjectRepository from '../../naver_project/repositories/NaverProjectRepository';
 import NaverRepository from '../../navers/repositories/NaversRepository';
+import AppError from '../../../shared/errors/AppError';
 
 interface Request {
   name: string;
@@ -43,7 +44,7 @@ export default class CreateProjectService {
     });
 
     if (naverNotExistent.length) {
-      throw new Error(`Naver ${naverNotExistent} não encontrado`);
+      throw new AppError(`Naver ${naverNotExistent} não encontrado`);
     }
 
     const project = projectRepository.create({
