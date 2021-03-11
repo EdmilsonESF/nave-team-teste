@@ -130,12 +130,12 @@
 
   - /index
     - Filtra os projetos por nome.
-    - O filtro devem ser informado por query string.
+    - O filtro deve ser informado por query string.
     - Exemplos:
 
       `/index?name=Projeto%20bom`
 
-      - Retorna um array com os navers encontrados.
+      - Retorna um array com os projetos encontrados.
       ```json
       [
         {
@@ -172,7 +172,7 @@
 
   - /store
     - Cria um novo projeto e retorna o mesmo.
-    - Os dados para criação do naver deve ser passados pelo body da requisição.
+    - Os dados para criação do projeto deve ser passados pelo body da requisição.
     - Exemplo:
       ```json
       {
@@ -182,7 +182,7 @@
 
   - /update
     - Atualiza um projeto.
-    - Os dados para atualização do naver deve ser passados pelo body da requisição.
+    - Os dados para atualização do projeto deve ser passados pelo body da requisição.
     - Exemplo:
       ```json
       {
