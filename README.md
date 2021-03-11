@@ -8,14 +8,32 @@
 
 - Inicie a API com `yarn dev:server` ou `npm run dev:server`. (A porta de execução será: 3333)
 
-- Workspace do Insominia pode ser baixado neste [link](https://drive.google.com/file/d/1HIMORzQnv_sMJXf9PEMplcDMfdlxlwbY/view?usp=sharing).
+- Workspace do Insominia pode ser baixado neste [link](https://drive.google.com/file/d/1eVHLoMbOWjEXF1Dj14Q2TG8rE1x_RuPA/view?usp=sharing).
 ---
 ## Rotas
 - ### /signup
   - Cria um usuário com nome, email e senha.
+  - Retorno será um objeto com o usúario criado.
+  ```json
+    {
+      "name": "fulano",
+      "email": "fulano@teste.com",
+      "user_id": 1,
+      "created_at": "2021-03-11T16:18:43.000Z"
+    }
 - ### /login
   - O usuário poderá efetuar login com email e senha.
-    Retorna um token JWT .
+  - Retorna o usúario e um token JWT.
+    ```json
+    {
+      "user": {
+        "user_id": 1,
+        "name": "teste",
+        "email": "teste@teste.com",
+        "created_at": "2021-03-06T21:30:30.000Z"
+      },
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2MTU0MTUwMjYsImV4cCI6MTYxNTU4NzgyNiwic3ViIjoiMSJ9.Isvj5-7GeUOSL_XDKO4260dRIYbJo1ZfI2U-8zRprMY"
+    }
 - ### /navers
 
   (*Só pode ser acessada por usúarios com token JWT*)
@@ -32,6 +50,25 @@
       `/index?companyTime=2`
 
       `/index?name=Fulano&job_role=Desenvolvedor&companyTime=2`
+
+    - Retorna um array com os navers encontrados.
+      ```json
+      [
+        {
+          "id": 1,
+          "name": "Fulano",
+          "birthdate": "1999-05-15",
+          "admission_date": "2020-06-12",
+          "job_role": "Desenvolvedor"
+        },
+        {
+          "id": 2,
+          "name": "Ciclano",
+          "birthdate": "1999-05-15",
+          "admission_date": "2020-06-12",
+          "job_role": "UX-UI"
+        }
+      ]
 
   - /show
     - Detalha um único naver através do seu id, que deve ser informado por query string.
@@ -80,6 +117,7 @@
         "job_role": "Desenvolvedor",
         "projects": [2, 3]
       }
+
   - /delete
     - Deleta um único naver através do seu id, que deve ser informado por query string.
     - Exemplo:
@@ -96,6 +134,19 @@
     - Exemplos:
 
       `/index?name=Projeto%20bom`
+
+      - Retorna um array com os navers encontrados.
+      ```json
+      [
+        {
+          "project_id": 1,
+          "name": "Projeto bom"
+        },
+        {
+          "project_id": 2,
+          "name": "Projeto muito bom"
+        }
+      ]
 
   - /show
     - Detalha um único projeto através do seu id, que deve ser informado por query string.
