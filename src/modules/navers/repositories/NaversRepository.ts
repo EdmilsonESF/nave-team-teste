@@ -30,9 +30,11 @@ class UsersRepository extends Repository<Naver> {
       from navers
       where
         (user_id = ${user_id}) and
-        (name = '${name}' or ${name === 'undefined'}) and
-        (job_role = '${job_role}' or ${job_role === 'undefined'}) and
-        (admission_date < '${time}' or ${time === 'null'})
+        (name = '${name}' or ${name === 'undefined'} or ${name === ''}) and
+        (job_role = '${job_role}' or ${job_role === 'undefined'} or ${
+      job_role === ''
+    }) and
+        (admission_date < '${time}' or ${time === 'null'} or ${time === ''})
     `);
 
     return navers;

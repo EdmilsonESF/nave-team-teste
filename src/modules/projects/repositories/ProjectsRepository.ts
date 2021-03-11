@@ -2,25 +2,11 @@
 /* eslint-disable camelcase */
 import { EntityRepository, getRepository, Repository } from 'typeorm';
 import Project from '../entities/Project';
-import NaverProject from '../../naver_project/entities/NaverProject';
 
 interface FindByNameRequest {
   name: string;
   user_id: number;
 }
-
-interface UpdateResponse {
-  name: string;
-  navers: number[];
-}
-
-interface UpdateRequest {
-  user_id: number;
-  id: number;
-  name: string;
-  navers: number[];
-}
-
 @EntityRepository(Project)
 class UsersRepository extends Repository<Project> {
   public async findByName({
@@ -34,7 +20,7 @@ class UsersRepository extends Repository<Project> {
     from projects
     where
       (user_id = ${user_id}) and
-      (name = '${name}' or ${name === 'undefined'})
+      (name = '${name}' or ${name === 'undefined'} or ${name === ''})
   `);
 
     if (!projects.length) {

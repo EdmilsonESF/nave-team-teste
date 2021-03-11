@@ -6,9 +6,9 @@ import ProjectsRouter from '../../modules/projects/routes/projects.routes';
 
 const routes = Router();
 
-routes.use('/Signup', usersRouter);
+routes.use('/signup', usersRouter);
 routes.use('/navers', naversRouter);
-routes.use('/project', ProjectsRouter);
-routes.use('/Login', sessionsRouter);
+routes.use('/projects', ProjectsRouter);
+routes.use('/login', sessionsRouter);
 
 export default routes;
