@@ -8,7 +8,7 @@
 
 - Inicie a API com `yarn dev:server` ou `npm run dev:server`. (A porta de execução será: 3333)
 
-- Workspace do Insominia pode ser baixado neste [link](https://doc-14-2s-docs.googleusercontent.com/docs/securesc/29otrubh7vk12j6udstqounv8mea28cc/m5ca3ubk1ke5nm1kouoqp4vsvh87pruu/1615480350000/01698077691459988657/01698077691459988657/1eVHLoMbOWjEXF1Dj14Q2TG8rE1x_RuPA?e=download&authuser=0).
+- Workspace do Insominia pode ser baixado neste [link](https://drive.google.com/file/d/1eVHLoMbOWjEXF1Dj14Q2TG8rE1x_RuPA/view?usp=sharing).
 ---
 ## Rotas
 - ### /signup
