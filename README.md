@@ -107,6 +107,7 @@
 
   - /update
     - Atualiza um naver.
+    - Id do projeto a ser atualizado deve ser informado por query string.
     - Os dados para atualização do naver deve ser passados pelo body da requisição.
     - Exemplo:
       ```json
@@ -182,6 +183,7 @@
 
   - /update
     - Atualiza um projeto.
+    - Id do projeto a ser atualizado deve ser informado por query string.
     - Os dados para atualização do projeto deve ser passados pelo body da requisição.
     - Exemplo:
       ```json
